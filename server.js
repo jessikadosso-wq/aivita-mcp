@@ -47,6 +47,21 @@ app.post("/mcp-server-stream", (req, res) => {
   res.json(data);
 });
 
+// Rotas simples para teste e verificação
+app.get("/", (req, res) => {
+  res.send("✅ aivita-mcp online!");
+});
+
+app.get("/healthz", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// Porta para o Render
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor MCP rodando na porta ${PORT}`);
+});
